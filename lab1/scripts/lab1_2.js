@@ -17,12 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function getCrowWord(num) {
-        // Вариант с if...else
         if (num % 100 >= 11 && num % 100 <= 14) {
             return 'ворон';
         }
-        
-        // Вариант со switch для последней цифры
+ 
         const lastDigit = num % 10;
         switch (lastDigit) {
             case 1:
