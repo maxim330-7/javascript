@@ -7,33 +7,32 @@ document.addEventListener('DOMContentLoaded', function() {
     countBtn.addEventListener('click', function() {
         const num = parseInt(numInput.value);
         
-        if (isNaN(num) || num < 0) {
-            alert('Пожалуйста, введите корректное число (0 или больше)');
+        
+        if (num < 0) {
+            alert('Число ворон не может быть отрицательным');
             return;
         }
 
-        const crowWord = getCrowWord(num);
-        alert(`На ветке сидит ${num} ${crowWord}`);
+        alert(`На ветке сидит ${num} ${getCrowWord(num)}`);
     });
 
     function getCrowWord(num) {
-        // Правила для русского языка:
-        // 1 ворона, 2-4 вороны, 5-20 ворон, потом повторяется (21 ворона, 22-24 вороны и т.д.)
-        const lastDigit = num % 10;
-        const lastTwoDigits = num % 100;
-
-        if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+        // Вариант с if...else
+        if (num % 100 >= 11 && num % 100 <= 14) {
             return 'ворон';
         }
-
-        if (lastDigit === 1) {
-            return 'ворона';
+        
+        // Вариант со switch для последней цифры
+        const lastDigit = num % 10;
+        switch (lastDigit) {
+            case 1:
+                return 'ворона';
+            case 2:
+            case 3:
+            case 4:
+                return 'вороны';
+            default:
+                return 'ворон';
         }
-
-        if (lastDigit >= 2 && lastDigit <= 4) {
-            return 'вороны';
-        }
-
-        return 'ворон';
     }
 });
