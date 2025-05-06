@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea, button {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.radio-group {
+    display: flex;
+    gap: 15px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
