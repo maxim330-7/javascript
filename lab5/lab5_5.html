@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Сообщения</title>
+    <style>
+        body {
+            margin: 10px auto;
+            width: 470px;
+            background-color: #f5f5f5;
+        }
+
+        h3 {
+            margin: 0;
+            padding-bottom: .3em;
+            padding-right: 20px;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+
+        p {
+            margin: 0;
+            padding: 0 0 .5em;
+            color: #34495e;
+        }
+
+        .pane {
+            background: #ecf0f1;
+            padding: 10px 20px 10px;
+            border-top: solid 2px #bdc3c7;
+            position: relative;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .remove-button {
+            position: absolute;
+            font-size: 110%;
+            top: 0;
+            color: #e74c3c;
+            right: 10px;
+            display: block;
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .remove-button:hover {
+            color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="messages-container">
+        <div class="pane">
+            <h3>Лошадь</h3>
+            <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид
+                дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+            <button class="remove-button">[x]</button>
+        </div>
+        <div class="pane">
+            <h3>Осёл</h3>
+            <p>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии
+                хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</p>
+            <button class="remove-button">[x]</button>
+        </div>
+        <div class="pane">
+            <h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
+            <p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного
+                семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами.
+                Молодых (до первой стельности) самок называют
+                тёлками.
+            </p>
+            <button class="remove-button">[x]</button>
+        </div>
+    </div>
+
+    <script>
+        'use strict';
+
+        const removeButtons = document.querySelectorAll('.remove-button');
+
+        removeButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                button.parentNode.style.display = 'none';
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
