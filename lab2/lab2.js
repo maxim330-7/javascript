@@ -16,13 +16,11 @@ function pow(x, n) {
 }
 
 /**
- * Вычисляет сумму чисел от 1 до n включительно.
- * @param {number} n - Натуральное число.
- * @returns {number} Сумма чисел от 1 до n.
- */
-function sumTo(n) {
-    return n * (n + 1) / 2;
-}
+    * Вычисляет сумму чисел от 1 до n включительно.
+    * @param {number} n - натуральное число
+    * @returns {number} Сумма чисел от 1 до n.
+    */
+const sumTo = new Function('n', 'return n* (n+1)/2;');
 
 /**
  * Проверяет год на високосность.
