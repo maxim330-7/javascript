@@ -51,6 +51,49 @@ class Book {
     }
 }
 
+/**
+ * Форматирует объект Date в строку в формате YYYY.MM.DD (разделитель — точка).
+ * Это гарантирует одинаковый вывод независимо от языковых настроек системы.
+ * @param {Date} date - Объект Date, который нужно отформатировать
+ * @returns {string} Строка с датой в формате YYYY.MM.DD
+ */
+function formatDate(date) {
+    // Получаем компоненты даты
+    const year = String(date.getFullYear()).slice(-2);
+    // Месяцы в JavaScript начинаются с 0 (январь = 0), поэтому добавляем 1
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    
+    // Собираем дату в формате YYYY.MM.DD
+    return `${day}.${month}.${year}`;
+}
+
+/**
+ * Проверяет, является ли объект пустым (не имеет собственных перечисляемых свойств).
+ * @param {Object} obj - Объект для проверки
+ * @returns {boolean} true, если объект пуст, иначе false
+ */
+function isEmpty(obj) {
+    if (typeof obj !== 'object' || obj === null) return true;
+   
+    if (Object.getOwnPropertyNames(obj).length > 0) return false;
+    
+  
+    if (Object.getOwnPropertySymbols(obj).length > 0) return false;
+    
+    return true;
+}
+
+/**
+ * Возвращает количество секунд, прошедших с начала текущего дня.
+ * @returns {number} Количество секунд с начала дня
+ */
+function getSecondsToday() {
+    let now = new Date();
+    let start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.floor((now - start) / 1000); 
+}
+
 try {
     let book1 = new Book('1984', 1949, 1000);
     book1.show();
@@ -71,23 +114,11 @@ try {
         books[i].show();
     }
 
-
-    function isEmpty(obj) {
-        if (typeof obj !== 'object' || obj === null) return true;
-
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) return false;
-        }
-        return Object.getOwnPropertySymbols(obj).length === 0;
-    }
-
     let obj1 = { [Symbol()]: true };
-    let obj2 = {};
+    let obj2 = Object.defineProperty({}, 'name', { value: 'John', });
 
     console.log("Объект 1", isEmpty(obj1));
     console.log("Объект 2", isEmpty(obj2));
-
-
 
     let classObject = {
         className: "open menu",
@@ -119,34 +150,21 @@ try {
     classObject.removeClass('menu');
     console.log("className после removeClass('menu'):", classObject.className);
 
-
     let jsonString = JSON.stringify(classObject, null, 2);
     console.log("JSON строка:", jsonString);
 
     let object2 = JSON.parse(jsonString);
     console.log('Сравнение объектов из JSON:', JSON.stringify(object2) === JSON.stringify(classObject));
 
-
-    function getSecondsToday() {
-        let now = new Date();
-        let start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        return Math.floor((now - start) / 1000); 
-    }
-
     console.log("Секунд с начала дня: ", getSecondsToday());
-
-
-    function formatDate(date) {
-        return date.toLocaleDateString();
-    }
 
     let date1 = new Date(2024, 0, 20); 
     let date2 = new Date(2000, 11, 1); 
     let date3 = new Date(1995, 9, 10); 
 
-    console.log("Дата 1:", formatDate(date1));
-    console.log("Дата 2:", formatDate(date2));
-    console.log("Дата 3:", formatDate(date3));
+    console.log("Дата 1:", formatDate(date1));  
+    console.log("Дата 2:", formatDate(date2));  
+    console.log("Дата 3:", formatDate(date3));  
 } catch (error) {
     console.error("Произошла ошибка:", error.message);
 }
