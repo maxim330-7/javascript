@@ -6,6 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultTextarea = document.getElementById('result');
 
     calculateBtn.addEventListener('click', calculatePension);
+    
+    ageInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); 
+            calculatePension();
+        }
+    });
 
     function calculatePension() {
         const age = parseInt(ageInput.value);
@@ -15,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getPensionMessage(age, gender) {
+        if (isNaN(age)) return "Введите корректный возраст";
         if (age < 0) return "Да кто ты такой?";
         if (age >= 0 && age <= 17) return "Вам работать ещё рано — учитесь";
 
